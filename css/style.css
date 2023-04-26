@@ -3,3 +3,10 @@
     font-size: 30px;
     padding: 20px 100px;
 }
+div{
+    margin: 10px 0px;
+}
+body{
+    background-color: #121212;
+    color: white;
+}
