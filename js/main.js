@@ -60,8 +60,10 @@ function Calculate() {
     case "FixedPoint":
       break;
     case "Newton":
+      Newton();
       break;
     case "Scant":
+      Scant();
       break;
     default:
       break;
@@ -74,6 +76,16 @@ function f(x, scope) {
     document.getElementById("fx").value.toLowerCase().replaceAll("x", x),
     scope
   );
+}
+function fdash(x, scope) {
+  fd = math
+    .derivative(
+      document.getElementById("fx").value.toLowerCase().replaceAll("x", x),
+      x
+    )
+    .toString();
+  console.log(fd);
+  return math.evaluate(fd, scope);
 }
 
 // Bisection and False Position function based on the chosen method
@@ -100,7 +112,8 @@ function BisAndFalse(method) {
     let currError = 100,
       result,
       resultList = [],
-      err = document.getElementById("err").value;
+      err = document.getElementById("err").value,
+      fxr;
     for (let i = 0; currError > err; i++) {
       console.log(method);
       if (method == "Bisection") scope.xr = (scope.xl + scope.xu) / 2;
@@ -143,20 +156,78 @@ function Newton() {
   let scope = {
     xi: Number(document.getElementById("Newton-Xi").value),
   };
-
+  let currError = 100,
+    result,
+    resultList = [],
+    fxi,
+    fdashxi,
+    err = document.getElementById("err").value;
+  for (let i = 0; currError > err; i++) {
+    fxi = f("xi", scope);
+    fdashxi = fdash("xi", scope);
+    if (i != 0)
+      currError = math.abs((scope.xi - resultList[i - 1].xi) / scope.xi) * 100;
+    result = {
+      i: i,
+      xi: scope.xi,
+      fxi: fxi,
+      fdahsxi: fdashxi,
+      error: currError,
+    };
+    resultList.push(result);
+    console.log(result);
+    scope.xi = scope.xi - fxi / fdashxi;
+  }
+  console.log(resultList);
 }
 
 // Scant Function
-function Scant() {}
+function Scant() {
+  let scope = {
+    xi: Number(document.getElementById("Scant-Xi").value),
+    xii: Number(document.getElementById("Scant-Xi-1").value),
+  };
+  let currError = 100,
+    result,
+    resultList = [],
+    fxi,
+    fxii,
+    err = document.getElementById("err").value;
+  for (let i = 0; currError > err; i++) {
+    fxi = f("xi", scope);
+    fxii = f("xii", scope);
+    if (i != 0)
+      currError = math.abs((scope.xi - resultList[i - 1].xi) / scope.xi) * 100;
+    result = {
+      i: i,
+      xi: scope.xi,
+      fxi: fxi,
+      xii: scope.xii,
+      fxii: fxii,
+      error: currError,
+    };
+    resultList.push(result);
+    console.log(result);
+    scope.xi = scope.xi - ((fxi*(scope.xii - scope.xi))/(fxii - fxi));
+    scope.xii = resultList[i].xi;
+  }
+  console.log(resultList);
+}
 
 // Test Cases
+
 // Bisection
-//
+
 // False Position
 // f(x) = -26 + 82.3x - 88x^2 + 45.4x^3 - 9x^4 + 0.65x^5, e = 0.2%, xl = 0.5, xu = 1 (Works)
 // f(x) = -13 - 20x + 19x^2 - 3x^3, e = 1%, xl = -1, xu = 0 (Works)
 
+// Simple Fixed Point
 
+// Newton
+// f(x) = -0.9x^2 + 1.7x + 2.5, e = 0.7%, x0 = 5
+
+//Scant
+// f(x) = 0.95x^3 - 5.9x^2 + 10.9x - 6, e = 0.5%, x0 = 3.5, x-1 = 2.5
 
 //-2+7x-5x^2+6x^3
-
