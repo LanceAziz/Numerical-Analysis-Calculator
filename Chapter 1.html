@@ -23,7 +23,7 @@
               <label for="fx">F(X):</label>
             </div>
             <div class="col-md-11">
-              <input class="form-control" id="fx" type="text" placeholder="Mathematical Function" />
+              <input class="form-control" id="fx" type="text" placeholder="Mathematical Function" value="-26 + 82.3x - 88x^2 + 45.4x^3 - 9x^4 + 0.65x^5"/>
             </div>
           </div>
           <!-- Error Percentage -->
@@ -32,7 +32,7 @@
               <label for="err">Error:</label>
             </div>
             <div class="col-md-11">
-              <input class="form-control" id="err" type="text" placeholder="Error In Percentage" />
+              <input class="form-control" id="err" type="text" placeholder="Error In Percentage" value="0.2"/>
             </div>
           </div>
           <!-- Choose Method -->
@@ -86,7 +86,7 @@
                 <label for="False-Xl">Xl:</label>
               </div>
               <div class="col-md-11">
-                <input class="form-control" id="False-Xl" type="text"  placeholder="False Position Method (Xl)"/>
+                <input class="form-control" id="False-Xl" type="text"  placeholder="False Position Method (Xl)" value="0.5"/>
               </div>
             </div>
             <div class="row">
@@ -94,7 +94,7 @@
                 <label for="Flase-Xu">Xu:</label>
               </div>
               <div class="col-md-11">
-                <input class="form-control" id="False-Xu" type="text" placeholder="False Position Method (Xu)" />
+                <input class="form-control" id="False-Xu" type="text" placeholder="False Position Method (Xu)" value="1"/>
               </div>
             </div>
           </div>
@@ -147,6 +147,19 @@
             <button class="btn btn-primary w-75" onclick="Calculate()">
               Calculate
             </button>
+          </div>
+          <!-- Results -->
+          <div class="bg-dark rounded-4">
+            <table class="table text-white">
+              <thead>
+                <tr id="table-head">
+
+                </tr>
+              </thead>
+              <tbody id="table-body">
+              </tbody>
+            </table>
+            </table>
           </div>
         </div>
       </div>

@@ -105,9 +105,9 @@ function BisAndFalse(method) {
   };
   let fxl = f("xl", scope);
   let fxu = f("xu", scope);
-  console.log(scope);
-  console.log(fxl);
-  console.log(fxu);
+  // console.log(scope);
+  // console.log(fxl);
+  // console.log(fxu);
   if (fxl * fxu < 0) {
     let currError = 100,
       result,
@@ -115,7 +115,7 @@ function BisAndFalse(method) {
       err = document.getElementById("err").value,
       fxr;
     for (let i = 0; currError > err; i++) {
-      console.log(method);
+      // console.log(method);
       if (method == "Bisection") scope.xr = (scope.xl + scope.xu) / 2;
       else scope.xr = scope.xu - (fxu * (scope.xl - scope.xu)) / (fxl - fxu);
       fxr = f("xr", scope);
@@ -133,7 +133,7 @@ function BisAndFalse(method) {
         currError: currError,
       };
       resultList.push(result);
-      console.log(result);
+      // console.log(result);
       if (fxl * fxr < 0) {
         scope.xu = scope.xr;
         fxu = fxr;
@@ -142,14 +142,14 @@ function BisAndFalse(method) {
         fxl = fxr;
       }
     }
-    console.log(resultList);
+    showTable(result, resultList);
   } else {
     console.log("Not Solvable");
   }
 }
 
 // Simple Fixed Point function
-function FixedPoint() {}
+function FixedPoint() { }
 
 // Newton Function
 function Newton() {
@@ -208,11 +208,49 @@ function Scant() {
     };
     resultList.push(result);
     console.log(result);
-    scope.xi = scope.xi - ((fxi*(scope.xii - scope.xi))/(fxii - fxi));
+    scope.xi = scope.xi - ((fxi * (scope.xii - scope.xi)) / (fxii - fxi));
     scope.xii = resultList[i].xi;
   }
   console.log(resultList);
 }
+
+function showTable(tablehead, tablebody) {
+  //Initials
+  let td_Head_values = [];
+  let td_Head = ``;
+  let td_Body = ``;
+  let tr_Body = ``;
+  let cartonaBody = ``;
+console.log(tablebody);
+  //head loop
+  for (let i = 0; i < Object.keys(tablehead).length; i++) {
+    td_Head_values.push(Object.keys(tablehead)[i]);
+    let temp = `<th>${Object.keys(tablehead)[i]}</th>`
+    td_Head = td_Head.concat(temp);
+  }
+
+  //body loop
+  for (let i = 0; i < tablebody.length; i++) {
+    let temp;
+    for (let j = 0; j < Object.keys(tablebody[i]).length; j++) {
+      console.log(i);
+      let attributeName = td_Head_values[j]
+      temp = `<td>${tablebody[i][attributeName]}</td>`
+      td_Body = td_Body.concat(temp);
+      
+    }
+    tr_Body = `<tr>${td_Body}</tr>`
+    cartonaBody = cartonaBody.concat(tr_Body);
+    td_Body = ``;
+  }
+  
+  console.log(tr_Body);
+
+  //setting in HTML
+  document.getElementById("table-head").innerHTML = td_Head;
+  document.getElementById("table-body").innerHTML = cartonaBody;
+}
+
 
 // Test Cases
 
