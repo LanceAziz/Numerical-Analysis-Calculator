@@ -5,8 +5,8 @@ document.querySelector("#Bisection").addEventListener("click", function () {
   document.querySelector("#Simple-Div").classList.add("d-none");
   document.querySelector("#Newton-Div").classList.add("d-none");
   document.querySelector("#Scant-Div").classList.add("d-none");
+  document.querySelector("#results").classList.add("d-none");
   // Showing the chosen function in console (test)**********
-  console.log(document.querySelector('input[name="Method"]:checked').value);
 });
 document.querySelector("#FalsePos").addEventListener("click", function () {
   document.querySelector("#Bis-Div").classList.add("d-none");
@@ -14,8 +14,8 @@ document.querySelector("#FalsePos").addEventListener("click", function () {
   document.querySelector("#Simple-Div").classList.add("d-none");
   document.querySelector("#Newton-Div").classList.add("d-none");
   document.querySelector("#Scant-Div").classList.add("d-none");
+  document.querySelector("#results").classList.add("d-none");
   // Showing the chosen function in console (test)**********
-  console.log(document.querySelector('input[name="Method"]:checked').value);
 });
 document.querySelector("#FixedPoint").addEventListener("click", function () {
   document.querySelector("#Bis-Div").classList.add("d-none");
@@ -23,8 +23,8 @@ document.querySelector("#FixedPoint").addEventListener("click", function () {
   document.querySelector("#Simple-Div").classList.remove("d-none");
   document.querySelector("#Newton-Div").classList.add("d-none");
   document.querySelector("#Scant-Div").classList.add("d-none");
+  document.querySelector("#results").classList.add("d-none");
   // Showing the chosen function in console (test)**********
-  console.log(document.querySelector('input[name="Method"]:checked').value);
 });
 document.querySelector("#Newton").addEventListener("click", function () {
   document.querySelector("#Bis-Div").classList.add("d-none");
@@ -32,8 +32,8 @@ document.querySelector("#Newton").addEventListener("click", function () {
   document.querySelector("#Simple-Div").classList.add("d-none");
   document.querySelector("#Newton-Div").classList.remove("d-none");
   document.querySelector("#Scant-Div").classList.add("d-none");
+  document.querySelector("#results").classList.add("d-none");
   // Showing the chosen function in console (test)**********
-  console.log(document.querySelector('input[name="Method"]:checked').value);
 });
 document.querySelector("#Scant").addEventListener("click", function () {
   document.querySelector("#Bis-Div").classList.add("d-none");
@@ -41,12 +41,13 @@ document.querySelector("#Scant").addEventListener("click", function () {
   document.querySelector("#Simple-Div").classList.add("d-none");
   document.querySelector("#Newton-Div").classList.add("d-none");
   document.querySelector("#Scant-Div").classList.remove("d-none");
+  document.querySelector("#results").classList.add("d-none");
   // Showing the chosen function in console (test)**********
-  console.log(document.querySelector('input[name="Method"]:checked').value);
 });
 
 // Calls the method function based on the chosen method
 function Calculate() {
+  document.querySelector("#results").classList.remove("d-none");
   let checkedMethod = document.querySelector(
     'input[name="Method"]:checked'
   ).value;
@@ -84,7 +85,6 @@ function fdash(x, scope) {
       x
     )
     .toString();
-  console.log(fd);
   return math.evaluate(fd, scope);
 }
 
@@ -105,9 +105,6 @@ function BisAndFalse(method) {
   };
   let fxl = f("xl", scope);
   let fxu = f("xu", scope);
-  // console.log(scope);
-  // console.log(fxl);
-  // console.log(fxu);
   if (fxl * fxu < 0) {
     let currError = 100,
       result,
@@ -115,7 +112,6 @@ function BisAndFalse(method) {
       err = document.getElementById("err").value,
       fxr;
     for (let i = 0; currError > err; i++) {
-      // console.log(method);
       if (method == "Bisection") scope.xr = (scope.xl + scope.xu) / 2;
       else scope.xr = scope.xu - (fxu * (scope.xl - scope.xu)) / (fxl - fxu);
       fxr = f("xr", scope);
@@ -133,7 +129,6 @@ function BisAndFalse(method) {
         currError: currError,
       };
       resultList.push(result);
-      // console.log(result);
       if (fxl * fxr < 0) {
         scope.xu = scope.xr;
         fxu = fxr;
@@ -175,10 +170,9 @@ function Newton() {
       error: currError,
     };
     resultList.push(result);
-    console.log(result);
     scope.xi = scope.xi - fxi / fdashxi;
   }
-  console.log(resultList);
+  showTable(result, resultList);
 }
 
 // Scant Function
@@ -207,11 +201,9 @@ function Scant() {
       error: currError,
     };
     resultList.push(result);
-    console.log(result);
     scope.xi = scope.xi - ((fxi * (scope.xii - scope.xi)) / (fxii - fxi));
     scope.xii = resultList[i].xi;
   }
-  console.log(resultList);
 }
 
 function showTable(tablehead, tablebody) {
@@ -221,37 +213,31 @@ function showTable(tablehead, tablebody) {
   let td_Body = ``;
   let tr_Body = ``;
   let cartonaBody = ``;
-console.log(tablebody);
+  let root;
   //head loop
   for (let i = 0; i < Object.keys(tablehead).length; i++) {
     td_Head_values.push(Object.keys(tablehead)[i]);
     let temp = `<th>${Object.keys(tablehead)[i]}</th>`
     td_Head = td_Head.concat(temp);
   }
-
   //body loop
   for (let i = 0; i < tablebody.length; i++) {
     let temp;
     for (let j = 0; j < Object.keys(tablebody[i]).length; j++) {
-      console.log(i);
       let attributeName = td_Head_values[j]
       temp = `<td>${tablebody[i][attributeName]}</td>`
       td_Body = td_Body.concat(temp);
-      
+      root = tablebody[i].xr;
     }
     tr_Body = `<tr>${td_Body}</tr>`
     cartonaBody = cartonaBody.concat(tr_Body);
     td_Body = ``;
   }
-  
-  console.log(tr_Body);
-
   //setting in HTML
   document.getElementById("table-head").innerHTML = td_Head;
   document.getElementById("table-body").innerHTML = cartonaBody;
+  document.getElementById("root").innerHTML = root;
 }
-
-
 // Test Cases
 
 // Bisection

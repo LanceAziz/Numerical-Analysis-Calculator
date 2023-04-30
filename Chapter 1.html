@@ -1,172 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 1</title>
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <section>
-      <div class="container text-center">
-        <div class="row">
-          <!-- title -->
-          <h2 class="lead fs-1 bg-primary rounded-5 py-2 mt-2 mb-4">
-            Chapter 1
-          </h2>
-          <!-- Mathematical Function -->
-          <div class="row">
-            <div class="col-md-1">
-              <label for="fx">F(X):</label>
-            </div>
-            <div class="col-md-11">
-              <input class="form-control" id="fx" type="text" placeholder="Mathematical Function" value="-26 + 82.3x - 88x^2 + 45.4x^3 - 9x^4 + 0.65x^5"/>
-            </div>
-          </div>
-          <!-- Error Percentage -->
-          <div class="row">
-            <div class="col-md-1">
-              <label for="err">Error:</label>
-            </div>
-            <div class="col-md-11">
-              <input class="form-control" id="err" type="text" placeholder="Error In Percentage" value="0.2"/>
-            </div>
-          </div>
-          <!-- Choose Method -->
-          <div class="d-flex justify-content-evenly">
-            <div>
-              <input id="Bisection" type="radio" name="Method" value="Bisection" />
-              <label for="Bisection">Bisection</label>
-            </div>
-            <div>
-              <input id="FalsePos" type="radio" name="Method" value="FalsePos"/>
-              <label for="FalsePos">False Position</label>
-            </div>
-            <div>
-              <input id="FixedPoint" type="radio" name="Method" value="FixedPoint"/>
-              <label for="FixedPoint">Simple Fixed Point</label>
-            </div>
-            <div>
-              <input id="Newton" type="radio" name="Method" value="Newton"/>
-              <label for="Newton">Newton</label>
-            </div>
-            <div>
-              <input id="Scant" type="radio" name="Method" value="Scant"/>
-              <label for="Scant">Scant</label>
-            </div>
-          </div>
-          <!-- Extra Attributes -->
-          <!-- Bisection -->
-          <div id="Bis-Div" class="d-none">
-            <div class="row">
-              <div class="col-md-1">
-                <label for="Bis-Xl">Xl:</label>
-              </div>
-              <div class="col-md-11">
-                <input class="form-control" id="Bis-Xl" type="text"  placeholder="Bisection Method (Xl)"/>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-1">
-                <label for="Bis-Xu">Xu:</label>
-              </div>
-              <div class="col-md-11">
-                <input class="form-control" id="Bis-Xu" type="text" placeholder="Bisection Method (Xu)" />
-              </div>
-            </div>
-          </div>
-          <!-- End Bisection -->
-          <!-- False Position -->
-          <div id="False-Div" class="d-none">
-            <div class="row">
-              <div class="col-md-1">
-                <label for="False-Xl">Xl:</label>
-              </div>
-              <div class="col-md-11">
-                <input class="form-control" id="False-Xl" type="text"  placeholder="False Position Method (Xl)" value="0.5"/>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-1">
-                <label for="Flase-Xu">Xu:</label>
-              </div>
-              <div class="col-md-11">
-                <input class="form-control" id="False-Xu" type="text" placeholder="False Position Method (Xu)" value="1"/>
-              </div>
-            </div>
-          </div>
-          <!-- End False Position -->
-          <!-- Simple Fixed Point -->
-          <div id="Simple-Div" class="d-none">
-            <div class="row">
-              <div class="col-md-1">
-                <label for="Simple-xi">Xi:</label>
-              </div>
-              <div class="col-md-11">
-                <input class="form-control" id="Simple-xi" type="text"  placeholder="Simple Fixed Point Method (Xi)"/>
-              </div>
-            </div>
-          </div>
-          <!-- End Simple Fixed Point -->
-          <!-- Newton -->
-          <div id="Newton-Div" class="d-none">
-            <div class="row">
-              <div class="col-md-1">
-                <label for="Newton-Xi">Xi:</label>
-              </div>
-              <div class="col-md-11">
-                <input class="form-control" id="Newton-Xi" type="text"  placeholder="Newton Method (Xi)"/>
-              </div>
-            </div>
-          </div>
-          <!-- End Newton -->
-          <!-- Scant -->
-          <div id="Scant-Div" class="d-none">
-            <div class="row">
-              <div class="col-md-1">
-                <label for="Scant-Xi">Xi:</label>
-              </div>
-              <div class="col-md-11">
-                <input class="form-control" id="Scant-Xi" type="text" placeholder="Scant Method (Xi)" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-1">
-                <label for="Scant-Xi-1">Xi-1:</label>
-              </div>
-              <div class="col-md-11">
-                <input class="form-control" id="Scant-Xi-1" type="text" placeholder="Scant Method (Xi-1)" />
-              </div>
-            </div>
-          </div>
-          <!-- End Scant -->
-          <div class="d-felx justify-content-center">
-            <button class="btn btn-primary w-75" onclick="Calculate()">
-              Calculate
-            </button>
-          </div>
-          <!-- Results -->
-          <div class="bg-dark rounded-4">
-            <table class="table text-white">
-              <thead>
-                <tr id="table-head">
 
-                </tr>
-              </thead>
-              <tbody id="table-body">
-              </tbody>
-            </table>
-            </table>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 1</title>
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <section>
+    <div class="container text-center">
+      <div class="row">
+        <!-- title -->
+        <h2 class="lead fs-1 bg-primary rounded-5 py-2 mt-2 mb-4">
+          Chapter 1
+        </h2>
+        <!-- Mathematical Function -->
+        <div class="row">
+          <div class="col-md-1">
+            <label for="fx">F(X):</label>
+          </div>
+          <div class="col-md-11">
+            <input class="form-control" id="fx" type="text" placeholder="Mathematical Function"/>
           </div>
         </div>
+        <!-- Error Percentage -->
+        <div class="row">
+          <div class="col-md-1">
+            <label for="err">Error:</label>
+          </div>
+          <div class="col-md-11">
+            <input class="form-control" id="err" type="text" placeholder="Error In Percentage" />
+          </div>
+        </div>
+        <!-- Choose Method -->
+        <div class="d-flex justify-content-evenly">
+          <div>
+            <input id="Bisection" type="radio" name="Method" value="Bisection" />
+            <label for="Bisection">Bisection</label>
+          </div>
+          <div>
+            <input id="FalsePos" type="radio" name="Method" value="FalsePos" />
+            <label for="FalsePos">False Position</label>
+          </div>
+          <div>
+            <input id="FixedPoint" type="radio" name="Method" value="FixedPoint" />
+            <label for="FixedPoint">Simple Fixed Point</label>
+          </div>
+          <div>
+            <input id="Newton" type="radio" name="Method" value="Newton" />
+            <label for="Newton">Newton</label>
+          </div>
+          <div>
+            <input id="Scant" type="radio" name="Method" value="Scant" />
+            <label for="Scant">Scant</label>
+          </div>
+        </div>
+        <!-- Extra Attributes -->
+        <!-- Bisection -->
+        <div id="Bis-Div" class="d-none">
+          <div class="row">
+            <div class="col-md-1">
+              <label for="Bis-Xl">Xl:</label>
+            </div>
+            <div class="col-md-11">
+              <input class="form-control" id="Bis-Xl" type="text" placeholder="Bisection Method (Xl)" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+              <label for="Bis-Xu">Xu:</label>
+            </div>
+            <div class="col-md-11">
+              <input class="form-control" id="Bis-Xu" type="text" placeholder="Bisection Method (Xu)" />
+            </div>
+          </div>
+        </div>
+        <!-- End Bisection -->
+        <!-- False Position -->
+        <div id="False-Div" class="d-none">
+          <div class="row">
+            <div class="col-md-1">
+              <label for="False-Xl">Xl:</label>
+            </div>
+            <div class="col-md-11">
+              <input class="form-control" id="False-Xl" type="text" placeholder="False Position Method (Xl)"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+              <label for="Flase-Xu">Xu:</label>
+            </div>
+            <div class="col-md-11">
+              <input class="form-control" id="False-Xu" type="text" placeholder="False Position Method (Xu)"/>
+            </div>
+          </div>
+        </div>
+        <!-- End False Position -->
+        <!-- Simple Fixed Point -->
+        <div id="Simple-Div" class="d-none">
+          <div class="row">
+            <div class="col-md-1">
+              <label for="Simple-xi">Xi:</label>
+            </div>
+            <div class="col-md-11">
+              <input class="form-control" id="Simple-xi" type="text" placeholder="Simple Fixed Point Method (Xi)" />
+            </div>
+          </div>
+        </div>
+        <!-- End Simple Fixed Point -->
+        <!-- Newton -->
+        <div id="Newton-Div" class="d-none">
+          <div class="row">
+            <div class="col-md-1">
+              <label for="Newton-Xi">Xi:</label>
+            </div>
+            <div class="col-md-11">
+              <input class="form-control" id="Newton-Xi" type="text" placeholder="Newton Method (Xi)" />
+            </div>
+          </div>
+        </div>
+        <!-- End Newton -->
+        <!-- Scant -->
+        <div id="Scant-Div" class="d-none">
+          <div class="row">
+            <div class="col-md-1">
+              <label for="Scant-Xi">Xi:</label>
+            </div>
+            <div class="col-md-11">
+              <input class="form-control" id="Scant-Xi" type="text" placeholder="Scant Method (Xi)" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+              <label for="Scant-Xi-1">Xi-1:</label>
+            </div>
+            <div class="col-md-11">
+              <input class="form-control" id="Scant-Xi-1" type="text" placeholder="Scant Method (Xi-1)" />
+            </div>
+          </div>
+        </div>
+        <!-- End Scant -->
+        <div class="d-felx justify-content-center">
+          <button class="btn btn-primary w-75" onclick="Calculate()">
+            Calculate
+          </button>
+        </div>
+        <!-- Results -->
+        <div id="results" class="d-none bg-dark rounded-4">
+          <table class="table text-white">
+            <thead>
+              <tr id="table-head">
+              </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+          </table>
+          <h2>Root: <span id="root"></span></h2>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <script src="js/math.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+  <script src="js/math.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
 </html>
