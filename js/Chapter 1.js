@@ -1,9 +1,3 @@
-//backspace
-document.body.addEventListener("keydown", function(e){
-  if (e.key == "Backspace"){
-    window.location.href= "index.html";
-  }
-})
 // Clicking on each Method to show its form and hide the other forms
 document.querySelector("#Bisection").addEventListener("click", function () {
   document.querySelector("#Bis-Div").classList.remove("d-none");
