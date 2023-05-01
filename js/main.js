@@ -204,6 +204,7 @@ function Scant() {
     scope.xi = scope.xi - ((fxi * (scope.xii - scope.xi)) / (fxii - fxi));
     scope.xii = resultList[i].xi;
   }
+  showTable(result, resultList);
 }
 
 function showTable(tablehead, tablebody) {
