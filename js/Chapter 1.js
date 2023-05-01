@@ -139,7 +139,7 @@ function BisAndFalse(method) {
     }
     showTable(result, resultList);
   } else {
-    console.log("Not Solvable");
+    alert("Not Solvable !!")
   }
 }
 
