@@ -1,3 +1,4 @@
+//Functions
 function goTo() {
   let checked = document.querySelector('input[type="checkbox"]:checked');
   console.log(checked);
@@ -8,14 +9,21 @@ function goTo() {
     window.location.href= "Chapter 2.html";
   }
 }
+function ch1() {
+  document.getElementById("switch").checked = true;
+}
+function ch2() {
+  document.getElementById("switch").checked = false;
+}
+//EventListener
 document.body.addEventListener("keydown", function(e){
   if (e.key == "Enter") {
     goTo()
   }
   if (e.key == "ArrowLeft"){
-    document.getElementById("switch").checked = true;
+    ch1()
   }
   else if (e.key == "ArrowRight"){
-    document.getElementById("switch").checked = false;
+    ch2()
   }
 })
