@@ -120,13 +120,13 @@ function BisAndFalse(method) {
           math.abs((scope.xr - resultList[i - 1].xr) / scope.xr) * 100;
       result = {
         i: i,
-        xl: scope.xl,
-        fxl: fxl,
-        xu: scope.xu,
-        fxu: fxu,
-        xr: scope.xr,
-        fxr: fxr,
-        currError: currError,
+        Xl: scope.xl,
+        FXl: fxl,
+        Xu: scope.xu,
+        FXu: fxu,
+        Xr: scope.xr,
+        FXr: fxr,
+        Error: currError,
       };
       resultList.push(result);
       if (fxl * fxr < 0) {
@@ -164,10 +164,10 @@ function Newton() {
       currError = math.abs((scope.xi - resultList[i - 1].xi) / scope.xi) * 100;
     result = {
       i: i,
-      xi: scope.xi,
-      fxi: fxi,
-      fdahsxi: fdashxi,
-      error: currError,
+      Xi: scope.xi,
+      FXi: fxi,
+      FDashXi: fdashxi,
+      Error: currError,
     };
     resultList.push(result);
     scope.xi = scope.xi - fxi / fdashxi;
@@ -194,11 +194,11 @@ function Scant() {
       currError = math.abs((scope.xi - resultList[i - 1].xi) / scope.xi) * 100;
     result = {
       i: i,
-      xi: scope.xi,
-      fxi: fxi,
-      xii: scope.xii,
-      fxii: fxii,
-      error: currError,
+      Xi: scope.xi,
+      FXi: fxi,
+      Xi_1: scope.xii,
+      FXi_1: fxii,
+      Error: currError,
     };
     resultList.push(result);
     scope.xi = scope.xi - ((fxi * (scope.xii - scope.xi)) / (fxii - fxi));

@@ -314,3 +314,15 @@ input:checked:focus+.switch-left+.switch-right {
 .checkbox:checked+.checkbox-label .checkbox-span::after {
   opacity: 1;
 }
+
+/* Chapter 2 */
+
+.matrix-eq input{
+  width: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+.matrix-eq p {
+  font-size: 30px;
+  margin: 0px 10px;
+}
