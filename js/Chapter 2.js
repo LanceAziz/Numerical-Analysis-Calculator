@@ -1,3 +1,26 @@
+// Clicking on each Method to show its form and hide the other forms
+document.querySelector("#GE").addEventListener("click", function () {
+    document.querySelector("#PP").classList.remove("d-none");
+    document.querySelector("#results").classList.replace("d-flex","d-none");
+    // Showing the chosen function in console (test)**********
+  });
+document.querySelector("#GJE").addEventListener("click", function () {
+    document.querySelector("#PP").classList.remove("d-none");
+    document.querySelector("#results").classList.replace("d-flex","d-none");
+    // Showing the chosen function in console (test)**********
+  });
+document.querySelector("#LU").addEventListener("click", function () {
+    document.querySelector("#PP").classList.add("d-none");
+    document.querySelector("#results").classList.replace("d-flex","d-none");
+    // Showing the chosen function in console (test)**********
+  });
+document.querySelector("#Cramer").addEventListener("click", function () {
+    document.querySelector("#PP").classList.add("d-none");
+    document.querySelector("#results").classList.replace("d-flex","d-none");
+    // Showing the chosen function in console (test)**********
+  });
+
+
 let x11_input = document.getElementById('x11')
 let x21_input = document.getElementById('x21')
 let x31_input = document.getElementById('x31')
@@ -12,6 +35,7 @@ let x33_input = document.getElementById('x33')
 let x43_input = document.getElementById('x43')
 
 function Calculate() {
+    document.querySelector("#results").classList.replace("d-none","d-flex");
     let x11 = Number(x11_input.value)
     let x21 = Number(x21_input.value)
     let x31 = Number(x31_input.value)
@@ -48,5 +72,7 @@ function Cramer(a) {
     let x1 = deta1 /deta0;
     let x2 = deta2 /deta0;
     let x3 = deta3 /deta0;
-    console.log(`x1 = ${x1} \nx2 = ${x2} \nx3 = ${x3}`);
+    document.getElementById("resX1").innerHTML = x1;
+    document.getElementById("resX2").innerHTML = x2;
+    document.getElementById("resX3").innerHTML = x3;
 };

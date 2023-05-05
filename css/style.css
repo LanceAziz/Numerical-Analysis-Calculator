@@ -8,8 +8,6 @@ body {
   font-family: Menlo, Roboto Mono, monospace;
 }
 
-
-
 /* Switch*/
 .rocker {
   display: inline-block;
@@ -290,13 +288,13 @@ input[type=radio]:checked+.cool-radio-red:before {
 .cool-radio-red::before {
   transition: 0.25s all ease;
 }
-
+/* chapter2 */
 .squared{
   width: 100px;
   height: 100px;
   text-align: center;
   font-size: 60px;
-  border-radius: 5px;
+  border-radius: 10px;
   border-color: #dc3545;
   background-color: #121212;
   color: white;
