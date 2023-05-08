@@ -35,22 +35,24 @@ let x33_input = document.getElementById('x33')
 let x43_input = document.getElementById('x43')
 
 function Calculate() {
-  snowman();
-  document.querySelector("#results").classList.replace("d-none", "d-flex");
-  let x11 = Number(x11_input.value)
-  let x21 = Number(x21_input.value)
-  let x31 = Number(x31_input.value)
-  let x41 = Number(x41_input.value)
-  let x12 = Number(x12_input.value)
-  let x22 = Number(x22_input.value)
-  let x32 = Number(x32_input.value)
-  let x42 = Number(x42_input.value)
-  let x13 = Number(x13_input.value)
-  let x23 = Number(x23_input.value)
-  let x33 = Number(x33_input.value)
-  let x43 = Number(x43_input.value)
-  let a = [[x11, x21, x31, x41], [x12, x22, x32, x42], [x13, x23, x33, x43]];
-  Cramer(a);
+  if (x11_input.value != '' && x21_input.value != '' && x31_input.value != '' && x41_input.value != '' && x12_input.value != '' && x22_input.value != '' && x32_input.value != '' && x42_input.value != '' && x13_input.value != '' && x23_input.value != '' && x33_input.value != '' && x43_input.value != '') {
+    snowman();
+    document.querySelector("#results").classList.replace("d-none", "d-flex");
+    let x11 = Number(x11_input.value)
+    let x21 = Number(x21_input.value)
+    let x31 = Number(x31_input.value)
+    let x41 = Number(x41_input.value)
+    let x12 = Number(x12_input.value)
+    let x22 = Number(x22_input.value)
+    let x32 = Number(x32_input.value)
+    let x42 = Number(x42_input.value)
+    let x13 = Number(x13_input.value)
+    let x23 = Number(x23_input.value)
+    let x33 = Number(x33_input.value)
+    let x43 = Number(x43_input.value)
+    let a = [[x11, x21, x31, x41], [x12, x22, x32, x42], [x13, x23, x33, x43]];
+    Cramer(a);
+  }
 }
 
 function Cramer(a) {
