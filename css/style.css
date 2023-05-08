@@ -162,6 +162,7 @@ input:checked:focus+.switch-left+.switch-right {
     0 0 50px #0d6efd,
     0 0 100px #0d6efd;
 }
+
 .btn-red {
   padding: 10px 20px;
   border: none;
@@ -288,8 +289,9 @@ input[type=radio]:checked+.cool-radio-red:before {
 .cool-radio-red::before {
   transition: 0.25s all ease;
 }
+
 /* chapter2 */
-.squared{
+.squared {
   width: 100px;
   height: 100px;
   text-align: center;
@@ -300,7 +302,34 @@ input[type=radio]:checked+.cool-radio-red:before {
   color: white;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
   appearance: none;
+}
+
+/* SnowMan Animation */
+section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+.animation-box {
+  position: absolute;
+  bottom: 0px;
+  overflow: hidden;
+  margin: 0px;
+}
+img{
+  position: relative;
+  left: -500px;
+}
+.translateLTR {
+  margin: 0;
+  animation: move 15s linear;
+  transition-timing-function: ease;
+}
+@keyframes move {
+  100% {
+    transform: translateX(2500px);
+  }
 }

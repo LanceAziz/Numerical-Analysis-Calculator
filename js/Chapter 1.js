@@ -47,6 +47,7 @@ document.querySelector("#Scant").addEventListener("click", function () {
 
 // Calls the method function based on the chosen method
 function Calculate() {
+  snowman();
   document.querySelector("#results").classList.remove("d-none");
   let checkedMethod = document.querySelector(
     'input[name="Method"]:checked'
