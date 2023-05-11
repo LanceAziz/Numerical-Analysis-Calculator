@@ -43,7 +43,7 @@ document.querySelector("#Scant").addEventListener("click", function () {
 // Calls the method function based on the chosen method
 function Calculate() {
   if (document.getElementById('fx').value != '' && document.getElementById('err').value != '') {
-    snowman();
+    // snowman();
     document.querySelector("#results").classList.remove("d-none");
     let checkedMethod = document.querySelector(
       'input[name="Method"]:checked'
@@ -56,6 +56,7 @@ function Calculate() {
         BisAndFalse(checkedMethod);
         break;
       case "FixedPoint":
+        FixedPoint();
         break;
       case "Newton":
         Newton();
@@ -84,6 +85,15 @@ function fdash(x, scope) {
     )
     .toString();
   return math.evaluate(fd, scope);
+}
+function fSimplified(x, scope) {
+  fs = math
+    .simplify(
+      document.getElementById("fx").value.toLowerCase().replaceAll("x", x)
+    )
+    .toString();
+    console.log(fs);
+  return math.evaluate(fs, scope);
 }
 
 // Bisection and False Position function based on the chosen method
@@ -142,7 +152,31 @@ function BisAndFalse(method) {
 }
 
 // Simple Fixed Point function
-function FixedPoint() { }
+function FixedPoint() {
+  let scope = {
+    xi: Number(document.getElementById("Simple-Xi").value),
+  };
+  let currError = 100,
+    result,
+    resultList = [],
+    fxi,
+    err = document.getElementById("err").value;
+  for (let i = 0; currError > err; i++) {
+    fxi = fSimplified("xi", scope);
+    if (i != 0)
+      currError = math.abs((scope.xi - resultList[i - 1].Xi) / scope.xi) * 100;
+    result = {
+      i: i,
+      Xi: scope.xi,
+      FXi: fxi,
+      Error: currError,
+    };
+    resultList.push(result);
+    scope.xi = fxi;
+  }
+  console.log(resultList);
+  showTable(result, resultList)
+}
 
 // Newton Function
 function Newton() {
@@ -247,6 +281,8 @@ function showTable(tablehead, tablebody) {
 // f(x) = -13 - 20x + 19x^2 - 3x^3, e = 1%, xl = -1, xu = 0 (Works)
 
 // Simple Fixed Point
+// f(x) = -0.9x^2 + 1.7x + 2.5, e = 0.7%, x0 = 5
+// f(x) = -x^2 + 1.8x + 2.5, e = 0.2%, x0 = 5
 
 // Newton
 // f(x) = -0.9x^2 + 1.7x + 2.5, e = 0.7%, x0 = 5

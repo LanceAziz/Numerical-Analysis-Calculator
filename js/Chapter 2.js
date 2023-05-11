@@ -51,10 +51,12 @@ function Calculate() {
     let x33 = Number(x33_input.value)
     let x43 = Number(x43_input.value)
     let a = [[x11, x21, x31, x41], [x12, x22, x32, x42], [x13, x23, x33, x43]];
-    Cramer(a);
+    // Cramer(a);
+    Gauss_Elimination(a);
   }
 }
 
+// Cramer Function
 function Cramer(a) {
   let a0 = [[a[0][0], a[0][1], a[0][2]], [a[1][0], a[1][1], a[1][2]], [a[2][0], a[2][1], a[2][2]]];
   console.log(a0);
@@ -79,3 +81,50 @@ function Cramer(a) {
   document.getElementById("resX2").innerHTML = x2;
   document.getElementById("resX3").innerHTML = x3;
 };
+
+// Gauss Elimination Function
+function Gauss_Elimination(a) {  
+  let m21 = a[1][0] / a[0][0];
+  let m31 = a[2][0] / a[0][0];
+
+  a[1][0] -= m21 * a[0][0];
+  a[1][1] -= m21 * a[0][1];
+  a[1][2] -= m21 * a[0][2];
+  a[1][3] -=  m21 * a[0][3];
+
+  a[2][0] -= m31 * a[0][0];
+  a[2][1] -= m31 * a[0][1];
+  a[2][2] -= m31 * a[0][2];
+  a[2][3] -= m31 * a[0][3];
+
+  let m32 = a[2][1] / a[1][1];
+
+  a[2][1] -= m32 * a[1][1];
+  a[2][2] -= m32 * a[1][2];
+  a[2][3] -= m32 * a[1][3];
+
+  console.log(a);
+
+  let x3 = a[2][3] / a[2][2];
+  let x2 = (a[1][3] - a[1][2] * x3)/ a[1][1];
+  let x1 = (a[0][3] - a[0][1] * x2 - a[0][2] * x3) / a[0][0];
+  
+  document.getElementById("resX1").innerHTML = x1;
+  document.getElementById("resX2").innerHTML = x2;
+  document.getElementById("resX3").innerHTML = x3;
+}
+
+
+
+
+//  _         _
+// |00 01 02 03|
+// |10 11 12 13|
+// |20 21 22 23|
+// |_         _|
+
+// Test Casses
+
+// Gauss Elimination
+// [[2 1 1 8] [4 1 0 11] [-2 2 1 3]], x1 = 2, x2 = 3, x3 = 1
+// [[2 1 -1 1] [5 2 2 -4] [3 1 1 5]], x1 = 14, x2 = -32, x3 = -5
