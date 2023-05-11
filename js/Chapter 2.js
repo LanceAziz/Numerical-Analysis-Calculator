@@ -117,6 +117,7 @@ function GaussElimination(a) {
 }
 
 function GaussJordan(a) {
+  // let a = JSON.parse(JSON.stringify(b));
   let temp = a[0][0];
   a[0][0] /= temp;
   a[0][1] /= temp;
