@@ -35,25 +35,27 @@ let x33_input = document.getElementById('x33')
 let x43_input = document.getElementById('x43')
 
 function Calculate() {
-  if (x11_input.value != '' && x21_input.value != '' && x31_input.value != '' && x41_input.value != '' && x12_input.value != '' && x22_input.value != '' && x32_input.value != '' && x42_input.value != '' && x13_input.value != '' && x23_input.value != '' && x33_input.value != '' && x43_input.value != '') {
-    snowman();
-    document.querySelector("#results").classList.replace("d-none", "d-flex");
-    let x11 = Number(x11_input.value)
-    let x21 = Number(x21_input.value)
-    let x31 = Number(x31_input.value)
-    let x41 = Number(x41_input.value)
-    let x12 = Number(x12_input.value)
-    let x22 = Number(x22_input.value)
-    let x32 = Number(x32_input.value)
-    let x42 = Number(x42_input.value)
-    let x13 = Number(x13_input.value)
-    let x23 = Number(x23_input.value)
-    let x33 = Number(x33_input.value)
-    let x43 = Number(x43_input.value)
-    let a = [[x11, x21, x31, x41], [x12, x22, x32, x42], [x13, x23, x33, x43]];
-    // Cramer(a);
-    Gauss_Elimination(a);
-  }
+  // if (x11_input.value != '' && x21_input.value != '' && x31_input.value != '' && x41_input.value != '' && x12_input.value != '' && x22_input.value != '' && x32_input.value != '' && x42_input.value != '' && x13_input.value != '' && x23_input.value != '' && x33_input.value != '' && x43_input.value != '') {
+  // snowman();
+  document.querySelector("#results").classList.replace("d-none", "d-flex");
+  let x11 = Number(x11_input.value)
+  let x21 = Number(x21_input.value)
+  let x31 = Number(x31_input.value)
+  let x41 = Number(x41_input.value)
+  let x12 = Number(x12_input.value)
+  let x22 = Number(x22_input.value)
+  let x32 = Number(x32_input.value)
+  let x42 = Number(x42_input.value)
+  let x13 = Number(x13_input.value)
+  let x23 = Number(x23_input.value)
+  let x33 = Number(x33_input.value)
+  let x43 = Number(x43_input.value)
+  let a = [[x11, x21, x31, x41], [x12, x22, x32, x42], [x13, x23, x33, x43]];
+  // let a = [[4, 1, -1, -2], [5, 1, 2, 4], [6, 1, 1, 6]];
+  console.log(a);
+  // Cramer(a);
+  GaussJordan(a);
+  // }
 }
 
 // Cramer Function
@@ -83,14 +85,14 @@ function Cramer(a) {
 };
 
 // Gauss Elimination Function
-function Gauss_Elimination(a) {  
+function GaussElimination(a) {
   let m21 = a[1][0] / a[0][0];
   let m31 = a[2][0] / a[0][0];
 
   a[1][0] -= m21 * a[0][0];
   a[1][1] -= m21 * a[0][1];
   a[1][2] -= m21 * a[0][2];
-  a[1][3] -=  m21 * a[0][3];
+  a[1][3] -= m21 * a[0][3];
 
   a[2][0] -= m31 * a[0][0];
   a[2][1] -= m31 * a[0][1];
@@ -106,13 +108,95 @@ function Gauss_Elimination(a) {
   console.log(a);
 
   let x3 = a[2][3] / a[2][2];
-  let x2 = (a[1][3] - a[1][2] * x3)/ a[1][1];
+  let x2 = (a[1][3] - a[1][2] * x3) / a[1][1];
   let x1 = (a[0][3] - a[0][1] * x2 - a[0][2] * x3) / a[0][0];
-  
+
   document.getElementById("resX1").innerHTML = x1;
   document.getElementById("resX2").innerHTML = x2;
   document.getElementById("resX3").innerHTML = x3;
 }
+
+function GaussJordan(a) {
+  let temp = a[0][0];
+  a[0][0] /= temp;
+  a[0][1] /= temp;
+  a[0][2] /= temp;
+  a[0][3] /= temp;
+  console.log(a);
+
+  temp = a[1][0];
+  a[1][0] = temp * a[0][0] - a[1][0];
+  a[1][1] = temp * a[0][1] - a[1][1];
+  a[1][2] = temp * a[0][2] - a[1][2];
+  a[1][3] = temp * a[0][3] - a[1][3];
+
+  temp = a[2][0];
+  a[2][0] = temp * a[0][0] - a[2][0];
+  a[2][1] = temp * a[0][1] - a[2][1];
+  a[2][2] = temp * a[0][2] - a[2][2];
+  a[2][3] = temp * a[0][3] - a[2][3];
+
+  console.log(a);
+
+  temp = a[1][1];
+  a[1][1] /= temp;
+  a[1][2] /= temp;
+  a[1][3] /= temp;
+
+  temp = a[0][1];
+  a[0][0] = temp * a[1][0] - a[0][0];
+  a[0][1] = temp * a[1][1] - a[0][1];
+  a[0][2] = temp * a[1][2] - a[0][2];
+  a[0][3] = temp * a[1][3] - a[0][3];
+
+  temp = a[2][1];
+  a[2][0] = temp * a[1][0] - a[2][0];
+  a[2][1] = temp * a[1][1] - a[2][1];
+  a[2][2] = temp * a[1][2] - a[2][2];
+  a[2][3] = temp * a[1][3] - a[2][3];
+
+  console.log(a);
+
+  temp = a[2][2];
+  a[2][2] /= temp;
+  a[2][3] /= temp;
+
+  temp = a[0][2];
+  a[0][0] = temp * a[2][0] - a[0][0];
+  a[0][1] = temp * a[2][1] - a[0][1];
+  a[0][2] = temp * a[2][2] - a[0][2];
+  a[0][3] = temp * a[2][3] - a[0][3];
+
+  temp = a[1][2];
+  a[1][0] = temp * a[2][0] - a[1][0];
+  a[1][1] = temp * a[2][1] - a[1][1];
+  a[1][2] = temp * a[2][2] - a[1][2];
+  a[1][3] = temp * a[2][3] - a[1][3];
+
+  console.log(a);
+
+  if (a[0][0] == -1) {
+    a[0][0] *= -1;
+    a[0][3] *= -1;
+  }
+  if (a[1][1] == -1) {
+    a[1][1] *= -1;
+    a[1][3] *= -1;
+  }
+  if (a[2][2] == -1) {
+    a[2][2] *= -1;
+    a[2][3] *= -1;
+  }
+
+  let x1 = a[0][3];
+  let x2 = a[1][3];
+  let x3 = a[2][3];
+
+  document.getElementById("resX1").innerHTML = x1;
+  document.getElementById("resX2").innerHTML = x2;
+  document.getElementById("resX3").innerHTML = x3;
+}
+
 
 
 
