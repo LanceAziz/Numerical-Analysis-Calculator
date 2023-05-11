@@ -6,7 +6,6 @@ document.querySelector("#Bisection").addEventListener("click", function () {
   document.querySelector("#Newton-Div").classList.add("d-none");
   document.querySelector("#Scant-Div").classList.add("d-none");
   document.querySelector("#results").classList.add("d-none");
-  // Showing the chosen function in console (test)**********
 });
 document.querySelector("#FalsePos").addEventListener("click", function () {
   document.querySelector("#Bis-Div").classList.add("d-none");
@@ -15,7 +14,6 @@ document.querySelector("#FalsePos").addEventListener("click", function () {
   document.querySelector("#Newton-Div").classList.add("d-none");
   document.querySelector("#Scant-Div").classList.add("d-none");
   document.querySelector("#results").classList.add("d-none");
-  // Showing the chosen function in console (test)**********
 });
 document.querySelector("#FixedPoint").addEventListener("click", function () {
   document.querySelector("#Bis-Div").classList.add("d-none");
@@ -24,7 +22,6 @@ document.querySelector("#FixedPoint").addEventListener("click", function () {
   document.querySelector("#Newton-Div").classList.add("d-none");
   document.querySelector("#Scant-Div").classList.add("d-none");
   document.querySelector("#results").classList.add("d-none");
-  // Showing the chosen function in console (test)**********
 });
 document.querySelector("#Newton").addEventListener("click", function () {
   document.querySelector("#Bis-Div").classList.add("d-none");
@@ -33,7 +30,6 @@ document.querySelector("#Newton").addEventListener("click", function () {
   document.querySelector("#Newton-Div").classList.remove("d-none");
   document.querySelector("#Scant-Div").classList.add("d-none");
   document.querySelector("#results").classList.add("d-none");
-  // Showing the chosen function in console (test)**********
 });
 document.querySelector("#Scant").addEventListener("click", function () {
   document.querySelector("#Bis-Div").classList.add("d-none");
@@ -42,35 +38,34 @@ document.querySelector("#Scant").addEventListener("click", function () {
   document.querySelector("#Newton-Div").classList.add("d-none");
   document.querySelector("#Scant-Div").classList.remove("d-none");
   document.querySelector("#results").classList.add("d-none");
-  // Showing the chosen function in console (test)**********
 });
 
 // Calls the method function based on the chosen method
 function Calculate() {
-  if(document.getElementById('fx').value != '' && document.getElementById('err').value != ''){
+  if (document.getElementById('fx').value != '' && document.getElementById('err').value != '') {
     snowman();
-  document.querySelector("#results").classList.remove("d-none");
-  let checkedMethod = document.querySelector(
-    'input[name="Method"]:checked'
-  ).value;
-  switch (checkedMethod) {
-    case "Bisection":
-      BisAndFalse(checkedMethod);
-      break;
-    case "FalsePos":
-      BisAndFalse(checkedMethod);
-      break;
-    case "FixedPoint":
-      break;
-    case "Newton":
-      Newton();
-      break;
-    case "Scant":
-      Scant();
-      break;
-    default:
-      break;
-  }
+    document.querySelector("#results").classList.remove("d-none");
+    let checkedMethod = document.querySelector(
+      'input[name="Method"]:checked'
+    ).value;
+    switch (checkedMethod) {
+      case "Bisection":
+        BisAndFalse(checkedMethod);
+        break;
+      case "FalsePos":
+        BisAndFalse(checkedMethod);
+        break;
+      case "FixedPoint":
+        break;
+      case "Newton":
+        Newton();
+        break;
+      case "Scant":
+        Scant();
+        break;
+      default:
+        break;
+    }
   }
 }
 
@@ -120,7 +115,7 @@ function BisAndFalse(method) {
       fxr = f("xr", scope);
       if (i != 0)
         currError =
-          math.abs((scope.xr - resultList[i - 1].xr) / scope.xr) * 100;
+          math.abs((scope.xr - resultList[i - 1].Xr) / scope.xr) * 100;
       result = {
         i: i,
         Xl: scope.xl,
@@ -164,7 +159,7 @@ function Newton() {
     fxi = f("xi", scope);
     fdashxi = fdash("xi", scope);
     if (i != 0)
-      currError = math.abs((scope.xi - resultList[i - 1].xi) / scope.xi) * 100;
+      currError = math.abs((scope.xi - resultList[i - 1].Xi) / scope.xi) * 100;
     result = {
       i: i,
       Xi: scope.xi,
@@ -194,7 +189,7 @@ function Scant() {
     fxi = f("xi", scope);
     fxii = f("xii", scope);
     if (i != 0)
-      currError = math.abs((scope.xi - resultList[i - 1].xi) / scope.xi) * 100;
+      currError = math.abs((scope.xi - resultList[i - 1].Xi) / scope.xi) * 100;
     result = {
       i: i,
       Xi: scope.xi,
@@ -245,6 +240,7 @@ function showTable(tablehead, tablebody) {
 // Test Cases
 
 // Bisection
+// f(x) = -2 + 7x - 5x^2 + 6x^3, e = 10%, xl = 0, xu= 1
 
 // False Position
 // f(x) = -26 + 82.3x - 88x^2 + 45.4x^3 - 9x^4 + 0.65x^5, e = 0.2%, xl = 0.5, xu = 1 (Works)
