@@ -31,9 +31,9 @@ let x33_input = document.getElementById('x33')
 let x43_input = document.getElementById('x43')
 
 function Calculate() {
-  if (x11_input.value != '' && x21_input.value != '' && x31_input.value != '' && x41_input.value != '' && x12_input.value != '' && x22_input.value != '' && x32_input.value != '' && x42_input.value != '' && x13_input.value != '' && x23_input.value != '' && x33_input.value != '' && x43_input.value != '') {
-    snowman();
+  // if (x11_input.value != '' && x21_input.value != '' && x31_input.value != '' && x41_input.value != '' && x12_input.value != '' && x22_input.value != '' && x32_input.value != '' && x42_input.value != '' && x13_input.value != '' && x23_input.value != '' && x33_input.value != '' && x43_input.value != '') {
     document.querySelector("#results").classList.replace("d-none", "d-flex");
+    snowman();
     let x11 = Number(x11_input.value)
     let x21 = Number(x21_input.value)
     let x31 = Number(x31_input.value)
@@ -69,7 +69,7 @@ function Calculate() {
         break;
     }
   }
-}
+// }
 
 // Gauss Elimination Function
 function GaussElimination(a) {
@@ -177,8 +177,44 @@ function GaussJordan(a) {
 // LU Function
 function LU(a) {
   GaussElimination(a);
+  // Perform LU decomposition
+  // let n = a.length;
+  // let L = math.zeros(n, n);
+  // let U = math.zeros(n, n);
 
+  // for (let i = 0; i < n; i++) {
+  //   L[i][i] = 1;
+
+  //   for (let j = 0; j < n; j++) {
+  //     let sum = 0;
+  //     for (let k = 0; k < i; k++) {
+  //       sum += L[i][k] * U[k][j];
+  //     }
+  //     U[i][j] = a[i][j] - sum;
+
+  //     sum = 0;
+  //     for (let k = 0; k < i; k++) {
+  //       sum += L[j][k] * U[k][i];
+  //     }
+  //     L[j][i] = (a[j][i] - sum) / U[i][i];
+  //   }
+  // }
+
+  // // Solve using LU decomposition
+  // let b = math.matrix([a[0][3], a[1][3], a[2][3]]);
+  // let y = math.lusolve(L, b);
+  // let x = math.lusolve(U, y);
+
+  // let x1 = x[0][0];
+  // let x2 = x[1][0];
+  // let x3 = x[2][0];
+
+  // document.getElementById("resX1").innerHTML = x1;
+  // document.getElementById("resX2").innerHTML = x2;
+  // document.getElementById("resX3").innerHTML = x3;
 }
+
+
 
 // Cramer Function
 function Cramer(a) {
