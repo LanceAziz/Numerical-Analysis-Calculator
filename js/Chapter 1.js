@@ -165,7 +165,8 @@ function FixedPoint() {
     err = document.getElementById("err").value,
     root;
   for (let i = 0; currError > err; i++) {
-    fxi = fSimplified("xi", scope);
+    fxi = f("xi", scope);
+    console.log(fxibb );
     if (i != 0)
       currError = math.abs((scope.xi - resultList[i - 1].Xi) / scope.xi) * 100;
     result = {
@@ -276,6 +277,57 @@ function showTable(tablehead, tablebody,root) {
   document.getElementById("table-body").innerHTML = cartonaBody;
   document.getElementById("root").innerHTML = root;
 }
+
+// Simplification Function Demo (Still Under Construction)....
+// function g() {
+//   // let fx = '-x^2 + 1.8*x + 2.5';
+//   // let fx = '-0.9*x^2 + 1.7*x + 2.5';
+//   let fx = '0.95x^3 - 5.9x^2 +10.9x-6'
+//   // let fx ='2x^3 - 11.7x^2 + 17.7x - 5'
+//   let maxPow = 1;
+//   let powI = 0;
+//   for (let i = 0; i < fx.length; i++) {
+//       if (fx[i] == '^') {
+//           if (maxPow < fx[i + 1]) {
+//               maxPow = fx[i + 1];
+//               powI = i + 2;
+//           }
+//       }
+//   }
+//   console.log(maxPow);
+//   console.log(powI);
+//   let powSign = 0;
+//   for (let i = powI; i > 0; i--) {
+//       if (fx[i] == '+' || fx[i] == '-') {
+//           powSign = fx[i];
+//           break;
+//       }
+//   }
+//   let bigX = fx.slice(powSign, powI);
+//   let gx = fx.slice(powI);
+//   console.log(bigX);
+//   console.log(gx);
+//   let x
+//   if(bigX.includes('*')){
+//       x = bigX.split('*x^');
+//   }
+//   else{
+//       x = bigX.split('x^');
+//   }
+//   console.log(x);
+//   realGX = `((${gx})/${x[0]})^(1/${x[1]})`;
+//   console.log(realGX);
+//   scope = {
+//       x: 5
+//   }
+//   let answer = math.evaluate(realGX, scope)
+//   console.log(answer.im);
+// };
+
+// -0.9*x^2 + 1.7*x + 2.5
+
+
+
 // Test Cases
 
 // Bisection

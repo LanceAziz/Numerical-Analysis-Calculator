@@ -325,7 +325,7 @@ img{
 }
 .translateLTR {
   margin: 0;
-  animation: move 15s linear;
+  animation: move 12s linear;
   transition-timing-function: ease;
 }
 @keyframes move {

@@ -31,7 +31,7 @@ let x33_input = document.getElementById('x33')
 let x43_input = document.getElementById('x43')
 
 function Calculate() {
-  // if (x11_input.value != '' && x21_input.value != '' && x31_input.value != '' && x41_input.value != '' && x12_input.value != '' && x22_input.value != '' && x32_input.value != '' && x42_input.value != '' && x13_input.value != '' && x23_input.value != '' && x33_input.value != '' && x43_input.value != '') {
+  if (x11_input.value != '' && x21_input.value != '' && x31_input.value != '' && x41_input.value != '' && x12_input.value != '' && x22_input.value != '' && x32_input.value != '' && x42_input.value != '' && x13_input.value != '' && x23_input.value != '' && x33_input.value != '' && x43_input.value != '') {
     document.querySelector("#results").classList.replace("d-none", "d-flex");
     snowman();
     let x11 = Number(x11_input.value)
@@ -69,7 +69,7 @@ function Calculate() {
         break;
     }
   }
-// }
+}
 
 // Gauss Elimination Function
 function GaussElimination(a) {
@@ -174,6 +174,37 @@ function GaussJordan(a) {
   document.getElementById("resX3").innerHTML = x3;
 }
 
+// Cramer Function
+function Cramer(a) {
+  let a0 = [[a[0][0], a[0][1], a[0][2]], [a[1][0], a[1][1], a[1][2]], [a[2][0], a[2][1], a[2][2]]];
+  console.log(a0);
+  let deta0 = math.det(a0);
+  console.log(deta0);
+
+  let a1 = [[a[0][3], a[0][1], a[0][2]], [a[1][3], a[1][1], a[1][2]], [a[2][3], a[2][1], a[2][2]]];
+  console.log(a1);
+  let deta1 = math.det(a1);
+  console.log(deta1);
+
+  let a2 = [[a[0][0], a[0][3], a[0][2]], [a[1][0], a[1][3], a[1][2]], [a[2][0], a[2][3], a[2][2]]];
+  console.log(a2);
+  let deta2 = math.det(a2);
+  console.log(deta2);
+
+  let a3 = [[a[0][0], a[0][1], a[0][3]], [a[1][0], a[1][1], a[1][3]], [a[2][0], a[2][1], a[2][3]]];
+  console.log(a3);
+  let deta3 = math.det(a3);
+  console.log(deta3);
+
+  let x1 = deta1 / deta0;
+  let x2 = deta2 / deta0;
+  let x3 = deta3 / deta0;
+
+  document.getElementById("resX1").innerHTML = x1;
+  document.getElementById("resX2").innerHTML = x2;
+  document.getElementById("resX3").innerHTML = x3;
+}
+
 // LU Function
 function LU(a) {
   GaussElimination(a);
@@ -213,39 +244,6 @@ function LU(a) {
   // document.getElementById("resX2").innerHTML = x2;
   // document.getElementById("resX3").innerHTML = x3;
 }
-
-
-
-// Cramer Function
-function Cramer(a) {
-  let a0 = [[a[0][0], a[0][1], a[0][2]], [a[1][0], a[1][1], a[1][2]], [a[2][0], a[2][1], a[2][2]]];
-  console.log(a0);
-  let deta0 = math.det(a0);
-  console.log(deta0);
-
-  let a1 = [[a[0][3], a[0][1], a[0][2]], [a[1][3], a[1][1], a[1][2]], [a[2][3], a[2][1], a[2][2]]];
-  console.log(a1);
-  let deta1 = math.det(a1);
-  console.log(deta1);
-
-  let a2 = [[a[0][0], a[0][3], a[0][2]], [a[1][0], a[1][3], a[1][2]], [a[2][0], a[2][3], a[2][2]]];
-  console.log(a2);
-  let deta2 = math.det(a2);
-  console.log(deta2);
-
-  let a3 = [[a[0][0], a[0][1], a[0][3]], [a[1][0], a[1][1], a[1][3]], [a[2][0], a[2][1], a[2][3]]];
-  console.log(a3);
-  let deta3 = math.det(a3);
-  console.log(deta3);
-
-  let x1 = deta1 / deta0;
-  let x2 = deta2 / deta0;
-  let x3 = deta3 / deta0;
-
-  document.getElementById("resX1").innerHTML = x1;
-  document.getElementById("resX2").innerHTML = x2;
-  document.getElementById("resX3").innerHTML = x3;
-};
 
 
 
