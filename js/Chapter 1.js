@@ -118,7 +118,8 @@ function BisAndFalse(method) {
       result,
       resultList = [],
       err = document.getElementById("err").value,
-      fxr;
+      fxr,
+      root;
     for (let i = 0; currError > err; i++) {
       if (method == "Bisection") scope.xr = (scope.xl + scope.xu) / 2;
       else scope.xr = scope.xu - (fxu * (scope.xl - scope.xu)) / (fxl - fxu);
@@ -144,8 +145,9 @@ function BisAndFalse(method) {
         scope.xl = scope.xr;
         fxl = fxr;
       }
+      root = resultList[i].Xr;
     }
-    showTable(result, resultList);
+    showTable(result, resultList, root);
   } else {
     alert("Not Solvable !!")
   }
@@ -160,7 +162,8 @@ function FixedPoint() {
     result,
     resultList = [],
     fxi,
-    err = document.getElementById("err").value;
+    err = document.getElementById("err").value,
+    root;
   for (let i = 0; currError > err; i++) {
     fxi = fSimplified("xi", scope);
     if (i != 0)
@@ -173,9 +176,9 @@ function FixedPoint() {
     };
     resultList.push(result);
     scope.xi = fxi;
+    root = resultList[i].Xi;
   }
-  console.log(resultList);
-  showTable(result, resultList)
+  showTable(result, resultList,root)
 }
 
 // Newton Function
@@ -188,7 +191,8 @@ function Newton() {
     resultList = [],
     fxi,
     fdashxi,
-    err = document.getElementById("err").value;
+    err = document.getElementById("err").value,
+    root;
   for (let i = 0; currError > err; i++) {
     fxi = f("xi", scope);
     fdashxi = fdash("xi", scope);
@@ -203,8 +207,9 @@ function Newton() {
     };
     resultList.push(result);
     scope.xi = scope.xi - fxi / fdashxi;
+    root = resultList[i].Xi;
   }
-  showTable(result, resultList);
+  showTable(result, resultList,root);
 }
 
 // Scant Function
@@ -218,7 +223,8 @@ function Scant() {
     resultList = [],
     fxi,
     fxii,
-    err = document.getElementById("err").value;
+    err = document.getElementById("err").value,
+    root;
   for (let i = 0; currError > err; i++) {
     fxi = f("xi", scope);
     fxii = f("xii", scope);
@@ -234,19 +240,19 @@ function Scant() {
     };
     resultList.push(result);
     scope.xi = scope.xi - ((fxi * (scope.xii - scope.xi)) / (fxii - fxi));
-    scope.xii = resultList[i].xi;
+    scope.xii = resultList[i].Xi;
+    root = resultList[i].Xi;
   }
-  showTable(result, resultList);
+  showTable(result, resultList,root);
 }
 
-function showTable(tablehead, tablebody) {
+function showTable(tablehead, tablebody,root) {
   //Initials
   let td_Head_values = [];
   let td_Head = ``;
   let td_Body = ``;
   let tr_Body = ``;
   let cartonaBody = ``;
-  let root;
   //head loop
   for (let i = 0; i < Object.keys(tablehead).length; i++) {
     td_Head_values.push(Object.keys(tablehead)[i]);
@@ -260,7 +266,6 @@ function showTable(tablehead, tablebody) {
       let attributeName = td_Head_values[j]
       temp = `<td>${tablebody[i][attributeName]}</td>`
       td_Body = td_Body.concat(temp);
-      root = tablebody[i].xr;
     }
     tr_Body = `<tr>${td_Body}</tr>`
     cartonaBody = cartonaBody.concat(tr_Body);

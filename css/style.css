@@ -308,13 +308,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* SnowMan Animation */
-section {
+/* section {
   position: relative;
   height: 100vh;
   overflow: hidden;
-}
+} */
 .animation-box {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   overflow: hidden;
   margin: 0px;
