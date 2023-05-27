@@ -166,7 +166,6 @@ function FixedPoint() {
     root;
   for (let i = 0; currError > err; i++) {
     fxi = f("xi", scope);
-    console.log(fxibb );
     if (i != 0)
       currError = math.abs((scope.xi - resultList[i - 1].Xi) / scope.xi) * 100;
     result = {
